@@ -322,6 +322,9 @@ public extension Mesh {
     ) -> Mesh {
         let radius = max(abs(radius), scaleLimit / 2)
         let wrapMode = wrapMode == .default ? .tube : wrapMode
+
+        let isWatertight = startAngle == endAngle
+
         return lathe(
             unchecked: Path(unchecked: abs(height) > scaleLimit ? [
                 .point(0, height / 2),
@@ -341,8 +344,8 @@ public extension Mesh {
             faces: faces,
             wrapMode: wrapMode,
             material: material,
-            isConvex: true,
-            isWatertight: true
+            isConvex: isWatertight,
+            isWatertight: isWatertight
         )
     }
 
