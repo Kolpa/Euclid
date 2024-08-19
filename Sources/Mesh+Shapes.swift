@@ -323,7 +323,7 @@ public extension Mesh {
         let radius = max(abs(radius), scaleLimit / 2)
         let wrapMode = wrapMode == .default ? .tube : wrapMode
 
-        let isWatertight = startAngle == endAngle
+        let isWatertight = (endAngle - startAngle) >= .twoPi
 
         return lathe(
             unchecked: Path(unchecked: abs(height) > scaleLimit ? [
